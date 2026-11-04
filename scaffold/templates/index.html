@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{APP_TITLE}}</title>
+<link rel="stylesheet" href="/core/ui-kit.css">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">{{APP_NAME}}</div>
+    <h1>{{APP_TITLE}}</h1>
+    <p class="sub">Built with <a href="https://github.com/jakeolson57/dashboard-framework">dashboard-framework</a></p>
+    <div id="auth">
+      <span id="whoami" class="hidden badge accent"></span>
+      <button id="loginBtn" class="hidden">Log in with GitHub</button>
+      <span id="authError" class="hidden badge danger">GitHub login failed — try again.</span>
+    </div>
+  </header>
+  <main>
+    <div class="card">
+      <div class="card-top">
+        <h3>Status</h3>
+        <span id="statusDot" class="dot"></span>
+      </div>
+      <div class="meta">
+        <span>App <b>{{APP_NAME}}</b></span>
+        <span>Framework core <b id="fwVersion">—</b></span>
+      </div>
+      <p class="muted">Replace this card with your dashboard. See <code>public/app.js</code>.</p>
+      <div class="controls">
+        <button id="pingBtn">Ping API</button>
+        <button id="secretBtn">Create demo item (login)</button>
+      </div>
+      <div id="out" class="muted"></div>
+    </div>
+  </main>
+</div>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

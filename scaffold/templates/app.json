@@ -1,0 +1,1 @@
+{"cookie_prefix":"{{COOKIE_PREFIX}}","db_file":"{{DB_FILE}}","framework_version":"1.0.0","name":"{{APP_NAME}}","port":{{PORT}},"sidecar_port":{{SIDECAR_PORT}},"tailnet":"{{TAILNET}}","title":"{{APP_TITLE}}"}

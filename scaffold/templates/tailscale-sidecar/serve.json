@@ -1,0 +1,1 @@
+{"TCP":{"{{SIDECAR_PORT}}":{"HTTPS":true}},"Web":{"{{SIDECAR_HOST}}.TAILNET.ts.net:{{SIDECAR_PORT}}":{"Handlers":{"/":{"Proxy":"http://127.0.0.1:{{PORT}}"}}}}}

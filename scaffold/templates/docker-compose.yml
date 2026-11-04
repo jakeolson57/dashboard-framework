@@ -1,0 +1,25 @@
+services:
+  {{APP_NAME}}:
+    image: node:22-alpine
+    container_name: {{APP_NAME}}
+    working_dir: /app
+    command: ["node", "server.js"]
+    ports:
+      - "{{PORT}}:{{PORT}}"
+    environment:
+      - PORT={{PORT}}
+      - DB_PATH=/data/{{DB_FILE}}
+      # GitHub OAuth ("Log in with GitHub"). Empty = login disabled.
+      # Set these in a .env file next to this compose file (never commit it).
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID:-}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET:-}
+      - OAUTH_CALLBACK_URL=${OAUTH_CALLBACK_URL:-https://{{SIDECAR_HOST}}.{{TAILNET}}.ts.net:{{SIDECAR_PORT}}/api/oauth/callback}
+    volumes:
+      # Path to the cloned repo on your Unraid server.
+      - /mnt/user/appdata/{{APP_NAME}}:/app:ro
+      # SQLite data lives here, surviving container rebuilds.
+      - {{APP_NAME}}-data:/data
+    restart: unless-stopped
+
+volumes:
+  {{APP_NAME}}-data:

@@ -1,0 +1,5 @@
+/* App-specific styles. The framework theme lives in /core/ui-kit.css —
+ * override --accent here for this app's identity. */
+:root {
+  --accent: #f0a832;
+}

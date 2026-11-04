@@ -1,0 +1,27 @@
+services:
+  {{SIDECAR_HOST}}-tailscale:
+    # Dedicated Tailscale node so the app gets its own MagicDNS name
+    # (https://{{SIDECAR_HOST}}.<tailnet>.ts.net:{{SIDECAR_PORT}}).
+    image: tailscale/tailscale:stable
+    container_name: {{SIDECAR_HOST}}-tailscale
+    hostname: {{SIDECAR_HOST}}
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      # Generate at Tailscale admin -> Settings -> Keys (reusable auth key).
+      # Put it in the .env next to this file; never commit it.
+      - TS_AUTHKEY=${TS_AUTHKEY:?Set TS_AUTHKEY in .env (Tailscale admin -> Settings -> Keys)}
+      - TS_HOSTNAME={{SIDECAR_HOST}}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+    volumes:
+      - {{SIDECAR_HOST}}-ts-state:/var/lib/tailscale
+      - /mnt/user/appdata/{{SIDECAR_HOST}}-tailscale/serve.json:/config/serve.json:ro
+    restart: unless-stopped
+
+volumes:
+  {{SIDECAR_HOST}}-ts-state:
